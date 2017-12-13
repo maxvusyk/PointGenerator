@@ -45,6 +45,5 @@ namespace PointGenerator
         private Point3DCollection m_Points = new Point3DCollection();
         private CoordinateBorder m_CoordinateBorder;
         private Random m_Random = new Random();
-
     }
 }

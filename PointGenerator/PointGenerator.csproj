@@ -60,6 +60,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="LineGroup_e.cs" />
+    <Compile Include="SortedLines.cs" />
+    <Compile Include="Utils.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

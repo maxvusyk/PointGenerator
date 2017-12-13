@@ -30,19 +30,8 @@ namespace PointGenerator
         private void buttonGenerate_Click(object sender, RoutedEventArgs e)
         {
             var coordBorder = getBorder();
-            var pointGenerator = new RandomPoints(coordBorder);
-            renderLines(pointGenerator.Points);
-        }
-
-        private void renderLines(Point3DCollection points)
-        {
-            if (ViewPort1.Children.Any())
-                ViewPort1.Children.Clear();
-
-            LinesVisual3D lines = new LinesVisual3D();
-            lines.Thickness = 3;
-            lines.Points = points;
-            ViewPort1.Children.Add(lines);
+            var lines = new SortedLines(coordBorder, ViewPort1);
+            lines.RenderLines();
         }
 
         private CoordinateBorder getBorder()
@@ -61,6 +50,11 @@ namespace PointGenerator
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
+        {
+            setDefaultValues();
+        }
+
+        private void setDefaultValues()
         {
             textBoxMinX.Text = "-20";
             textBoxMaxX.Text = "20";

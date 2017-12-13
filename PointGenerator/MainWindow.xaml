@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PointGenerator"
         xmlns:h="http://helix-toolkit.org/wpf"
         mc:Ignorable="d"
-        Title="Points generator" Height="747.822" Width="1314.976" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" >
+        Title="Points generator" Height="747.822" Width="1314.976" WindowStartupLocation="CenterScreen" WindowState="Maximized" >
 
     <Grid Margin="293,0,2,0" x:Name="grid1">
         <Grid.RowDefinitions>
@@ -14,25 +14,25 @@
             <RowDefinition Height="259*"/>
         </Grid.RowDefinitions>
 
-        <h:HelixViewport3D x:Name="ViewPort1" Grid.RowSpan="2" Margin="-47,0,0,0">
+        <h:HelixViewport3D x:Name="ViewPort1" Grid.RowSpan="2" Margin="-286,0,0,0">
             <h:DefaultLights/>
         </h:HelixViewport3D>
         <Grid HorizontalAlignment="Left" Height="100" Margin="-286,0,0,0" VerticalAlignment="Top" Width="100"/>
-        <GroupBox x:Name="groupBox1" Header="Generate points" HorizontalAlignment="Left" Height="368" Margin="-286,0,0,0" VerticalAlignment="Top" Width="234">
-            <Grid HorizontalAlignment="Left" Height="157" VerticalAlignment="Top" Width="224" Margin="0,0,-2,0">
-                <Label x:Name="labelX" Content="X" HorizontalAlignment="Left" Margin="37,14,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                <Label x:Name="labelY" Content="Y" HorizontalAlignment="Left" Margin="37,40,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                <Label x:Name="labelZ" Content="Z" HorizontalAlignment="Left" Margin="37,66,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.529,1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                <TextBox x:Name="textBoxMinX" HorizontalAlignment="Left" Height="23" Margin="61,14,0,0" TextWrapping="Wrap" Text="-20" VerticalAlignment="Top" Width="37" RenderTransformOrigin="-0.483,0.348" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                <TextBox x:Name="textBoxMaxX" HorizontalAlignment="Left" Height="23" Margin="107,14,0,0" TextWrapping="Wrap" Text="20" VerticalAlignment="Top" Width="37" RenderTransformOrigin="-0.483,0.348" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                <TextBox x:Name="textBoxMinY" HorizontalAlignment="Left" Height="23" Margin="61,42,0,0" TextWrapping="Wrap" Text="-30" VerticalAlignment="Top" Width="37" RenderTransformOrigin="-0.483,0.348" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                <TextBox x:Name="textBoxMaxY" HorizontalAlignment="Left" Height="23" Margin="107,42,0,0" TextWrapping="Wrap" Text="30" VerticalAlignment="Top" Width="37" RenderTransformOrigin="-0.483,0.348" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                <TextBox x:Name="textBoxMinZ" HorizontalAlignment="Left" Height="23" Margin="61,70,0,0" TextWrapping="Wrap" Text="-10" VerticalAlignment="Top" Width="37" RenderTransformOrigin="-0.483,0.348" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                <TextBox x:Name="textBoxMaxZ" HorizontalAlignment="Left" Height="23" Margin="107,70,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="37" RenderTransformOrigin="-0.483,0.348" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                <Button x:Name="buttonGenerate" Content="Generate" HorizontalAlignment="Left" Margin="37,109,0,0" VerticalAlignment="Top" Width="80" Click="buttonGenerate_Click"/>
-                <Label x:Name="labelCount" Content="Count" HorizontalAlignment="Left" Margin="168,14,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="textBoxCountPoint" HorizontalAlignment="Left" Height="23" Margin="181,40,0,0" TextWrapping="Wrap" Text="50" VerticalAlignment="Top" Width="29" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.759,0.565"/>
-                <Button x:Name="buttonDefault" Content="Default" HorizontalAlignment="Left" Margin="131,109,0,0" VerticalAlignment="Top" Width="56" Click="button_Click"/>
+        <GroupBox x:Name="groupBox1" Header="Generate points" HorizontalAlignment="Left" Height="181" Margin="-286,0,0,0" VerticalAlignment="Top" Width="193">
+            <Grid HorizontalAlignment="Left" Height="147" VerticalAlignment="Top" Width="224" Margin="0,0,-2,-3">
+                <Label x:Name="labelX" Content="X" HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <Label x:Name="labelY" Content="Y" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <Label x:Name="labelZ" Content="Z" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.529,1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="textBoxMinX" HorizontalAlignment="Left" Height="23" Margin="34,11,0,0" TextWrapping="Wrap" Text="-20" VerticalAlignment="Top" Width="37" RenderTransformOrigin="-0.483,0.348" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="textBoxMaxX" HorizontalAlignment="Left" Height="23" Margin="80,11,0,0" TextWrapping="Wrap" Text="20" VerticalAlignment="Top" Width="37" RenderTransformOrigin="-0.483,0.348" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="textBoxMinY" HorizontalAlignment="Left" Height="23" Margin="34,39,0,0" TextWrapping="Wrap" Text="-30" VerticalAlignment="Top" Width="37" RenderTransformOrigin="-0.483,0.348" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="textBoxMaxY" HorizontalAlignment="Left" Height="23" Margin="80,39,0,0" TextWrapping="Wrap" Text="30" VerticalAlignment="Top" Width="37" RenderTransformOrigin="-0.483,0.348" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="textBoxMinZ" HorizontalAlignment="Left" Height="23" Margin="34,67,0,0" TextWrapping="Wrap" Text="-10" VerticalAlignment="Top" Width="37" RenderTransformOrigin="-0.483,0.348" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="textBoxMaxZ" HorizontalAlignment="Left" Height="23" Margin="80,67,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="37" RenderTransformOrigin="-0.483,0.348" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <Button x:Name="buttonGenerate" Content="Generate" HorizontalAlignment="Left" Margin="34,95,0,0" VerticalAlignment="Top" Width="83" Click="buttonGenerate_Click"/>
+                <Label x:Name="labelCount" Content="Count" HorizontalAlignment="Left" Margin="132,14,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="textBoxCountPoint" HorizontalAlignment="Left" Height="23" Margin="132,40,0,0" TextWrapping="Wrap" Text="50" VerticalAlignment="Top" Width="42" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.31,0.391"/>
+                <Button x:Name="buttonDefault" Content="Set default" HorizontalAlignment="Left" Margin="34,120,0,0" VerticalAlignment="Top" Width="83" Click="button_Click"/>
             </Grid>
         </GroupBox>
     </Grid>

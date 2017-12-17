@@ -32,7 +32,7 @@ namespace PointGenerator
 
         #region Properties
 
-        public RandomPoints Points { get => m_Points; }
+        public RandomPoints3D Points { get => m_Points; }
         public Dictionary<LineGroup_e, LinesVisual3D> Lines { get => m_Lines; }
 
         #endregion
@@ -43,9 +43,6 @@ namespace PointGenerator
         {
             if (m_Viewport == null)
                 return;
-
-            if (m_Viewport.Children.Any())
-                m_Viewport.Children.Clear();
 
             LinesVisual3D lines1 = m_Lines[LineGroup_e.LOW];
             LinesVisual3D lines2 = m_Lines[LineGroup_e.MIDDLE];
@@ -62,37 +59,6 @@ namespace PointGenerator
             m_Viewport.Children.Add(lines1);
             m_Viewport.Children.Add(lines2);
             m_Viewport.Children.Add(lines3);
-        }
-
-        public void createPolygon(int pointCount)
-        {
-            LinesVisual3D polygon = new LinesVisual3D();
-            Point3D prev = new Point3D();
-            Random rand = new Random();
-            Point3D nullablePoint = new Point3D();
-
-            int randNumber = rand.Next(0, m_Points.Points.Count());
-            while (m_Points.Points[randNumber].Equals(nullablePoint))
-                randNumber = rand.Next(0, m_Points.Points.Count());
-
-            polygon.Points.Add(m_Points.Points[randNumber]);
-
-            for (int i = 1; i < pointCount; i++)
-            {
-                randNumber = rand.Next(0, m_Points.Points.Count());
-                while (m_Points.Points[randNumber].Equals(nullablePoint))
-                    randNumber = rand.Next(0, m_Points.Points.Count());
-
-                if (!prev.Equals(nullablePoint))
-                    polygon.Points.Add(prev);
-
-                prev = m_Points.Points[rand.Next(0, m_Points.Points.Count())];
-                polygon.Points.Add(prev);
-            }
-
-            polygon.Points.Add(polygon.Points.First());
-            //Visual3DCollection col = new Visual3DCollection();
-            //col.Add();
         }
 
         private void processLinesIntoGroups()

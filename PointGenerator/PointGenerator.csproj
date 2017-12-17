@@ -62,7 +62,10 @@
     </ApplicationDefinition>
     <Compile Include="LineGroup_e.cs" />
     <Compile Include="ProcessLines.cs" />
+    <Compile Include="ProcessPolygon.cs" />
+    <Compile Include="RandomPoints2D.cs" />
     <Compile Include="RandomPoints3D.cs" />
+    <Compile Include="Utils.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

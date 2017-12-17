@@ -7,11 +7,13 @@ using System.Windows.Media.Media3D;
 
 namespace PointGenerator
 {
-    public class RandomPoints3D : RandomPoints
+    class RandomPoints2D : RandomPoints
     {
-        public RandomPoints3D(CoordinateBorder border)
+        public RandomPoints2D(CoordinateBorder border)
         {
             m_CoordinateBorder = border;
+            m_CoordinateBorder.MinX = 0;
+            m_CoordinateBorder.MinY = 0;
             GeneratePoints();
         }
 
@@ -21,9 +23,7 @@ namespace PointGenerator
         {
             for (int i = 0; i < m_CoordinateBorder.Count; i++)
             {
-                m_Points.Add(new Point3D(0, 0, 0));
-                m_Points.Add(getRandomPoint());
-
+                Points.Add(getRandomPoint());
             }
         }
 
@@ -31,9 +31,8 @@ namespace PointGenerator
         {
             int x = getRandomNumber(m_CoordinateBorder.MinX, m_CoordinateBorder.MaxX);
             int y = getRandomNumber(m_CoordinateBorder.MinY, m_CoordinateBorder.MaxY);
-            int z = getRandomNumber(m_CoordinateBorder.MinZ, m_CoordinateBorder.MaxZ);
 
-            return new Point3D(x, y, z);
+            return new Point3D(x, y, 0);
         }
     }
 }

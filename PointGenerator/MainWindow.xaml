@@ -14,7 +14,7 @@
             <RowDefinition Height="259*"/>
         </Grid.RowDefinitions>
 
-        <h:HelixViewport3D x:Name="ViewPort1" Grid.RowSpan="2" Margin="-286,0,0,0">
+        <h:HelixViewport3D x:Name="ViewPort1" Grid.RowSpan="2" Margin="-286,0,0,0" MouseDown="ViewPort1_MouseDown">
             <h:DefaultLights/>
         </h:HelixViewport3D>
         <Grid HorizontalAlignment="Left" Height="100" Margin="-286,0,0,0" VerticalAlignment="Top" Width="100"/>
@@ -29,17 +29,17 @@
                 <TextBox x:Name="textBoxMaxY" HorizontalAlignment="Left" Height="23" Margin="80,39,0,0" TextWrapping="Wrap" Text="30" VerticalAlignment="Top" Width="37" RenderTransformOrigin="-0.483,0.348" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
                 <TextBox x:Name="textBoxMinZ" HorizontalAlignment="Left" Height="23" Margin="34,67,0,0" TextWrapping="Wrap" Text="-10" VerticalAlignment="Top" Width="37" RenderTransformOrigin="-0.483,0.348" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
                 <TextBox x:Name="textBoxMaxZ" HorizontalAlignment="Left" Height="23" Margin="80,67,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="37" RenderTransformOrigin="-0.483,0.348" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                <Button x:Name="buttonGenerate" Content="Generate" HorizontalAlignment="Left" Margin="34,95,0,0" VerticalAlignment="Top" Width="83" Click="buttonGenerate_Click"/>
+                <Button x:Name="buttonGeneratePoints" Content="Generate" HorizontalAlignment="Left" Margin="34,95,0,0" VerticalAlignment="Top" Width="83" Click="buttonGenerateLines_Click"/>
                 <Label x:Name="labelCount" Content="Count" HorizontalAlignment="Left" Margin="132,0,0,0" VerticalAlignment="Top"/>
                 <TextBox x:Name="textBoxCountPoint" HorizontalAlignment="Left" Height="23" Margin="132,26,0,0" TextWrapping="Wrap" Text="50" VerticalAlignment="Top" Width="52" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.31,0.391"/>
-                <Button x:Name="buttonDefault" Content="Set default" HorizontalAlignment="Left" Margin="34,120,0,0" VerticalAlignment="Top" Width="83" Click="button_Click"/>
+                <Button x:Name="buttonDefault" Content="Set default" HorizontalAlignment="Left" Margin="34,120,0,0" VerticalAlignment="Top" Width="83" Click="buttonDefault_Click"/>
             </Grid>
         </GroupBox>
-        <GroupBox x:Name="groupBoxPolygon" Header="Generate polygon" HorizontalAlignment="Left" Height="135" Margin="-286,188,0,0" VerticalAlignment="Top" Width="212">
+        <GroupBox x:Name="groupBoxPolygon" Header="Generate polygon" HorizontalAlignment="Left" Height="116" Margin="-286,188,0,0" VerticalAlignment="Top" Width="212">
             <Grid HorizontalAlignment="Left" Height="125" Margin="0,0,-2,-12" VerticalAlignment="Top" Width="202">
-                <TextBox x:Name="textBoxCount" HorizontalAlignment="Left" Height="23" Margin="81,54,0,0" TextWrapping="Wrap" Text="8" VerticalAlignment="Top" Width="34" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                <Button x:Name="buttonGeneratePolygon" Content="Generate" HorizontalAlignment="Left" Margin="47,82,0,0" VerticalAlignment="Top" Width="101" Height="25" Click="buttonGeneratePolygon_Click"/>
-                <Label x:Name="labelCountPolygon" Content="Count of vertex" HorizontalAlignment="Left" Margin="47,23,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="textBoxCountPolygonPoints" HorizontalAlignment="Left" Height="23" Margin="87,38,0,0" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Width="34" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Button x:Name="buttonGeneratePolygon" Content="Generate" HorizontalAlignment="Left" Margin="53,66,0,0" VerticalAlignment="Top" Width="101" Height="25" Click="buttonGeneratePolygon_Click"/>
+                <Label x:Name="labelCountPolygon" Content="Count of vertex" HorizontalAlignment="Left" Margin="53,7,0,0" VerticalAlignment="Top"/>
             </Grid>
         </GroupBox>
     </Grid>

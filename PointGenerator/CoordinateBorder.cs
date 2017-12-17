@@ -6,7 +6,7 @@ namespace PointGenerator
     {
         public CoordinateBorder() { }
 
-        public CoordinateBorder(List<int> borders)
+        public CoordinateBorder(List<int> borders, int count)
         {
             m_MinX = borders[0];
             m_MaxX = borders[1];
@@ -14,12 +14,12 @@ namespace PointGenerator
             m_MaxY = borders[3];
             m_MinZ = borders[4];
             m_MaxZ = borders[5];
-            m_Count = borders[6];
+            m_Count = count;
         }
 
-        public int MinX { get => m_MinX; }
+        public int MinX { get => m_MinX; set => m_MinX = value; }
         public int MaxX { get => m_MaxX; }
-        public int MinY { get => m_MinY; }
+        public int MinY { get => m_MinY; set => m_MinY = value; }
         public int MaxY { get => m_MaxY; }
         public int MinZ { get => m_MinZ; }
         public int MaxZ { get => m_MaxZ; }

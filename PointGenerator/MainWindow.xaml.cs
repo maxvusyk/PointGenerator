@@ -24,17 +24,31 @@ namespace PointGenerator
         public MainWindow()
         {
             InitializeComponent();
+            ViewPort1.CalculateCursorPosition = true;
+            orthographicCamera = new OrthographicCamera(new Point3D(0, 0, 20), new Vector3D(0, 0, 0), new Vector3D(0, 0, 1), 3);
+            perspectiveCamera = new PerspectiveCamera(new Point3D(0, 0, -3), new Vector3D(0, 0, 1), new Vector3D(0, 1, 0), 50);
         }
 
-        private void buttonGenerate_Click(object sender, RoutedEventArgs e)
+        private void buttonGenerateLines_Click(object sender, RoutedEventArgs e)
         {
-            var coordBorder = getBorder();
-            m_ProcessLines = new ProcessLines(coordBorder, ViewPort1);
+            //setPerspectiveCamera();
+            clearScene();
+            var coordBorder = getBorder(Int32.Parse(textBoxCountPoint.Text));
+            var m_ProcessLines = new ProcessLines(coordBorder, ViewPort1);
             m_ProcessLines.RenderLines();
 
         }
 
-        private CoordinateBorder getBorder()
+        private void buttonGeneratePolygon_Click(object sender, RoutedEventArgs e)
+        {
+            //setOrthographicCamera();
+            clearScene();
+            var coordBorder = getBorder(Int32.Parse(textBoxCountPolygonPoints.Text));
+            m_ProcessPolygon = new ProcessPolygon(coordBorder, ViewPort1);
+            m_ProcessPolygon.createPolygon();
+        }
+
+        private CoordinateBorder getBorder(int countPoints)
         {
             List<int> borders = new List<int>();
             borders.Add(Int32.Parse(textBoxMinX.Text));
@@ -43,21 +57,14 @@ namespace PointGenerator
             borders.Add(Int32.Parse(textBoxMaxY.Text));
             borders.Add(Int32.Parse(textBoxMinZ.Text));
             borders.Add(Int32.Parse(textBoxMaxZ.Text));
-            borders.Add(Int32.Parse(textBoxCountPoint.Text));
 
             return
-                new CoordinateBorder(borders);
+                new CoordinateBorder(borders, countPoints);
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void buttonDefault_Click(object sender, RoutedEventArgs e)
         {
             setDefaultValues();
-        }
-
-        private void buttonGeneratePolygon_Click(object sender, RoutedEventArgs e)
-        {
-            clearScene();
-            m_ProcessLines.createPolygon(Int32.Parse(textBoxCount.Text));
         }
 
         private void setDefaultValues()
@@ -77,8 +84,36 @@ namespace PointGenerator
                 ViewPort1.Children.Clear();
         }
 
-        private ProcessLines m_ProcessLines;
+        private void setOrthographicCamera()
+        {
+            ViewPort1.Camera = orthographicCamera;
+        }
 
+        private void setPerspectiveCamera()
+        {
+            ViewPort1.Camera = perspectiveCamera;
+        }
 
+        private void ViewPort1_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (m_ProcessPolygon == null)
+                return;
+
+            var destinationPoint = ViewPort1.CursorPosition;
+            SphereVisual3D sphere = new SphereVisual3D();
+            sphere.Center = new Point3D(destinationPoint.Value.X, destinationPoint.Value.Y, destinationPoint.Value.Z);
+            sphere.Radius = 0.25;
+            bool isPointInTriangle = Utils.Math.IsPointInTriangle(destinationPoint.Value, m_ProcessPolygon.Points.Points[0], m_ProcessPolygon.Points.Points[1], m_ProcessPolygon.Points.Points[2]);
+            if (isPointInTriangle)
+                sphere.Material = new EmissiveMaterial(new SolidColorBrush(Colors.Yellow));
+            else
+                sphere.Material = new EmissiveMaterial(new SolidColorBrush(Colors.Red));
+
+            ViewPort1.Children.Add(sphere);
+        }
+
+        private OrthographicCamera orthographicCamera;
+        private PerspectiveCamera perspectiveCamera;
+        ProcessPolygon m_ProcessPolygon;
     }
 }

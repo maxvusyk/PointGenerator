@@ -18,13 +18,11 @@ namespace PointGenerator
         {
             InitializeComponent();
             ViewPort1.CalculateCursorPosition = true;
-            orthographicCamera = new OrthographicCamera(new Point3D(0, 0, 20), new Vector3D(0, 0, 0), new Vector3D(0, 0, 1), 3);
-            perspectiveCamera = new PerspectiveCamera(new Point3D(0, 0, -3), new Vector3D(0, 0, 1), new Vector3D(0, 1, 0), 50);
         }
 
         private void buttonGenerateLines_Click(object sender, RoutedEventArgs e)
         {
-            //setPerspectiveCamera();
+            setPerspectiveCamera();
             clearScene();
             var coordBorder = getBorder(Int32.Parse(textBoxCountPoint.Text));
             var m_ProcessLines = new ProcessLines(coordBorder, ViewPort1);
@@ -34,7 +32,7 @@ namespace PointGenerator
 
         private void buttonGeneratePolygon_Click(object sender, RoutedEventArgs e)
         {
-            //setOrthographicCamera();
+            setOrthographicCamera();
             clearScene();
             var coordBorder = getBorder(Int32.Parse(textBoxCountPolygonPoints.Text));
             m_ProcessPolygon = new ProcessPolygon(coordBorder, ViewPort1);
@@ -79,12 +77,14 @@ namespace PointGenerator
 
         private void setOrthographicCamera()
         {
-            ViewPort1.Camera = orthographicCamera;
+            ViewPort1.Camera = new OrthographicCamera(new Point3D(5, 16, -86), new Vector3D(0, 0, 86), new Vector3D(0, -1, 0), 58);
+            ViewPort1.CameraMode = CameraMode.FixedPosition;
         }
 
         private void setPerspectiveCamera()
         {
-            ViewPort1.Camera = perspectiveCamera;
+            ViewPort1.Camera = new PerspectiveCamera(new Point3D(5, 57, 66), new Vector3D(-7, -54, -68), new Vector3D(0, 0, 1), 58);
+            ViewPort1.CameraMode = CameraMode.Inspect;
         }
 
         private void ViewPort1_MouseDown(object sender, MouseButtonEventArgs e)
@@ -93,9 +93,11 @@ namespace PointGenerator
                 return;
 
             var destinationPoint = ViewPort1.CursorPosition;
+
             SphereVisual3D sphere = new SphereVisual3D();
             sphere.Center = new Point3D(destinationPoint.Value.X, destinationPoint.Value.Y, destinationPoint.Value.Z);
             sphere.Radius = 0.25;
+
             bool isPointInPolygon = Utils.Math.IsPointInPolygon(destinationPoint.Value, m_ProcessPolygon.Polygon.Points);
             if (isPointInPolygon)
                 sphere.Material = new EmissiveMaterial(new SolidColorBrush(Colors.Yellow));
@@ -105,8 +107,6 @@ namespace PointGenerator
             ViewPort1.Children.Add(sphere);
         }
 
-        private OrthographicCamera orthographicCamera;
-        private PerspectiveCamera perspectiveCamera;
         ProcessPolygon m_ProcessPolygon;
     }
 }

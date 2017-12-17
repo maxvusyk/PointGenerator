@@ -1,39 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace PointGenerator
 {
     public class CoordinateBorder
     {
-        
+        public CoordinateBorder() { }
+
         public CoordinateBorder(List<int> borders)
         {
-            this.minX = borders[0];
-            this.maxX = borders[1];
-            this.minY = borders[2];
-            this.maxY = borders[3];
-            this.minZ = borders[4];
-            this.maxZ = borders[5];
-            this.Count = borders[6];
+            m_MinX = borders[0];
+            m_MaxX = borders[1];
+            m_MinY = borders[2];
+            m_MaxY = borders[3];
+            m_MinZ = borders[4];
+            m_MaxZ = borders[5];
+            m_Count = borders[6];
         }
 
-        public int MinX { get => minX; set => minX = value; }
-        public int MaxX { get => maxX; set => maxX = value; }
-        public int MinY { get => minY; set => minY = value; }
-        public int MaxY { get => maxY; set => maxY = value; }
-        public int MinZ { get => minZ; set => minZ = value; }
-        public int MaxZ { get => maxZ; set => maxZ = value; }
-        public int Count { get => count; set => count = value; }
+        public int MinX { get => m_MinX; }
+        public int MaxX { get => m_MaxX; }
+        public int MinY { get => m_MinY; }
+        public int MaxY { get => m_MaxY; }
+        public int MinZ { get => m_MinZ; }
+        public int MaxZ { get => m_MaxZ; }
+        public int Count { get => m_Count; }
 
-        private int minX;
-        private int maxX;
-        private int minY;
-        private int maxY;
-        private int minZ;
-        private int maxZ;
-        private int count;
+        private int m_MinX;
+        private int m_MaxX;
+        private int m_MinY;
+        private int m_MaxY;
+        private int m_MinZ;
+        private int m_MaxZ;
+        private int m_Count;
     }
 }

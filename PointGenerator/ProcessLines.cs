@@ -1,16 +1,14 @@
 ﻿using HelixToolkit.Wpf;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
 
 namespace PointGenerator
 {
-    public class SortedLines
+    public class ProcessLines
     {
         #region Constants
         
@@ -18,15 +16,27 @@ namespace PointGenerator
 
         #endregion
 
-        public SortedLines(CoordinateBorder border, HelixViewport3D viewPort)
+        #region Constructors
+
+        public ProcessLines() { }
+
+        public ProcessLines(CoordinateBorder border, HelixViewport3D viewPort)
         {
-            m_Points = new RandomPoints(border);
+            m_Points = new RandomPoints3D(border);
             m_Viewport = viewPort;
             processLinesIntoGroups();
         }
 
+        #endregion
+
+        #region Properties
+
         public RandomPoints Points { get => m_Points; }
         public Dictionary<LineGroup_e, LinesVisual3D> Lines { get => m_Lines; }
+
+        #endregion
+
+        #region Public logic
 
         public void RenderLines()
         {
@@ -86,8 +96,8 @@ namespace PointGenerator
 
         private void processLinesIntoGroups()
         {
-            var pointsWithDistance = Utils.Distance.GetPointsWithDistance(m_Points.Points);
-            int elementsInGroup = (int)pointsWithDistance.Count / CountOfGroups;
+            var pointsWithDistance = GetPointsWithDistance(m_Points.Points);
+            int elementsInGroup = (int)(pointsWithDistance.Count / CountOfGroups);
             LineGroup_e typeOfGroup = LineGroup_e.LOW;
             int elementCount = 0;
             
@@ -118,9 +128,35 @@ namespace PointGenerator
             }
         }
 
-        private RandomPoints m_Points;
+        private SortedDictionary<double, List<Point3D>> GetPointsWithDistance(Point3DCollection points)
+        {
+            var sortedPoints = new SortedDictionary<double, List<Point3D>>();
+            var centrePoint = new Point3D();
+
+            foreach (var point in points)
+            {
+                if (point.Equals(centrePoint))
+                    continue;
+
+                double distance = centrePoint.DistanceTo(point);
+
+                if (!sortedPoints.ContainsKey(distance))
+                    sortedPoints.Add(distance, new List<Point3D> { point });
+                else
+                    sortedPoints[distance].Add(point);
+            }
+
+            return sortedPoints;
+        }
+
+        #endregion
+
+        #region Private fields
+
+        private RandomPoints3D m_Points;
         private Dictionary<LineGroup_e, LinesVisual3D> m_Lines = new Dictionary<LineGroup_e, LinesVisual3D>();
         private HelixViewport3D m_Viewport;
-    }
 
+        #endregion
+    }
 }

@@ -29,8 +29,8 @@ namespace PointGenerator
         private void buttonGenerate_Click(object sender, RoutedEventArgs e)
         {
             var coordBorder = getBorder();
-            m_SortedLines = new SortedLines(coordBorder, ViewPort1);
-            m_SortedLines.RenderLines();
+            var lines = new SortedLines(coordBorder, ViewPort1);
+            lines.RenderLines();
         }
 
         private CoordinateBorder getBorder()
@@ -69,13 +69,5 @@ namespace PointGenerator
             textBoxMaxZ.Text = "10";
             textBoxCountPoint.Text = "50";
         }
-
-        private void clearScene()
-        {
-            if (ViewPort1.Children.Any())
-                ViewPort1.Children.Clear();
-        }
-
-        private SortedLines m_SortedLines;
     }
 }

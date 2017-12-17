@@ -20,7 +20,7 @@ namespace PointGenerator
 
         public ProcessLines(CoordinateBorder border, HelixViewport3D viewPort)
         {
-            m_Points = new RandomPoints(border);
+            m_Points = new RandomPoints3D(border);
             m_Viewport = viewPort;
             processLinesIntoGroups();
         }
@@ -124,7 +124,7 @@ namespace PointGenerator
 
         #region Private fields
 
-        private RandomPoints m_Points;
+        private RandomPoints3D m_Points;
         private Dictionary<LineGroup_e, LinesVisual3D> m_Lines = new Dictionary<LineGroup_e, LinesVisual3D>();
         private HelixViewport3D m_Viewport;
 

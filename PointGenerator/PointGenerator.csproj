@@ -62,6 +62,7 @@
     </ApplicationDefinition>
     <Compile Include="LineGroup_e.cs" />
     <Compile Include="ProcessLines.cs" />
+    <Compile Include="RandomPoints3D.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

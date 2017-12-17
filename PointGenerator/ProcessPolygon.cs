@@ -14,7 +14,7 @@ namespace PointGenerator
         public RandomPoints2D Points { get => m_Points; }
         public LinesVisual3D Polygon { get => m_Polygon;}
 
-        public void createPolygon()
+        public void CreatePolygon()
         {
             m_Polygon = new LinesVisual3D();
 

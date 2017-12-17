@@ -27,7 +27,6 @@ namespace PointGenerator
             var coordBorder = getBorder(Int32.Parse(textBoxCountPoint.Text));
             var m_ProcessLines = new ProcessLines(coordBorder, ViewPort1);
             m_ProcessLines.RenderLines();
-
         }
 
         private void buttonGeneratePolygon_Click(object sender, RoutedEventArgs e)
@@ -36,7 +35,7 @@ namespace PointGenerator
             clearScene();
             var coordBorder = getBorder(Int32.Parse(textBoxCountPolygonPoints.Text));
             m_ProcessPolygon = new ProcessPolygon(coordBorder, ViewPort1);
-            m_ProcessPolygon.createPolygon();
+            m_ProcessPolygon.CreatePolygon();
         }
 
         private CoordinateBorder getBorder(int countPoints)
@@ -99,6 +98,7 @@ namespace PointGenerator
             sphere.Radius = 0.25;
 
             bool isPointInPolygon = Utils.Math.IsPointInPolygon(destinationPoint.Value, m_ProcessPolygon.Polygon.Points);
+
             if (isPointInPolygon)
                 sphere.Material = new EmissiveMaterial(new SolidColorBrush(Colors.Yellow));
             else
@@ -107,6 +107,6 @@ namespace PointGenerator
             ViewPort1.Children.Add(sphere);
         }
 
-        ProcessPolygon m_ProcessPolygon;
+        private ProcessPolygon m_ProcessPolygon;
     }
 }

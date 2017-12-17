@@ -9,7 +9,7 @@ namespace PointGenerator
     {
         #region Constants
         
-        private const int CountOfGroups = 3;
+        private const int GroupsCount = 3;
 
         #endregion
 
@@ -21,7 +21,7 @@ namespace PointGenerator
         {
             m_Points = new RandomPoints3D(border);
             m_Viewport = viewPort;
-            processLinesIntoGroups();
+            ProcessLinesIntoGroups();
         }
 
         #endregion
@@ -59,10 +59,10 @@ namespace PointGenerator
             m_Viewport.Children.Add(lines3);
         }
 
-        private void processLinesIntoGroups()
+        private void ProcessLinesIntoGroups()
         {
             var pointsWithDistance = GetPointsWithDistance(m_Points.Points);
-            int elementsInGroup = (int)(pointsWithDistance.Count / CountOfGroups);
+            int elementsInGroup = (int)(pointsWithDistance.Count / GroupsCount);
             LineGroup_e typeOfGroup = LineGroup_e.LOW;
             int elementCount = 0;
             

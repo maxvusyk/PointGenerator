@@ -6,6 +6,10 @@ namespace PointGenerator
     {
         public static class Math
         {
+            private enum PointInPolygon_e { INSIDE, OUTSIDE, BOUNDARY }
+            private enum EdgeType_e { TOUCHING, CROSSING, INESSENTIAL }
+            private enum PointOverEdge_e { LEFT, RIGHT, BETWEEN, OUTSIDE }
+
             public static bool IsPointInPolygon(Point3D destinationPoint, Point3DCollection points)
             {
                 bool parity = true;
@@ -66,10 +70,6 @@ namespace PointGenerator
 
                 return PointOverEdge_e.OUTSIDE;
             }
-
-            private enum PointInPolygon_e { INSIDE, OUTSIDE, BOUNDARY }
-            private enum EdgeType_e { TOUCHING, CROSSING, INESSENTIAL }
-            private enum PointOverEdge_e { LEFT, RIGHT, BETWEEN, OUTSIDE }
         }
     }
 }

@@ -18,14 +18,14 @@ namespace PointGenerator
         {
             for (int i = 0; i < m_CoordinateBorder.Count; i++)
             {
-                Points.Add(getRandomPoint());
+                Points.Add(GetRandomPoint());
             }
         }
 
-        protected override Point3D getRandomPoint()
+        protected override Point3D GetRandomPoint()
         {
-            int x = getRandomNumber(m_CoordinateBorder.MinX, m_CoordinateBorder.MaxX);
-            int y = getRandomNumber(m_CoordinateBorder.MinY, m_CoordinateBorder.MaxY);
+            int x = GetRandomNumber(m_CoordinateBorder.MinX, m_CoordinateBorder.MaxX);
+            int y = GetRandomNumber(m_CoordinateBorder.MinY, m_CoordinateBorder.MaxY);
 
             return new Point3D(x, y, 0);
         }

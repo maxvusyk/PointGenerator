@@ -6,9 +6,9 @@ namespace PointGenerator
     public abstract class RandomPoints
     {
         protected abstract void GeneratePoints();
-        protected abstract Point3D getRandomPoint();
+        protected abstract Point3D GetRandomPoint();
 
-        protected virtual int getRandomNumber(int min, int max)
+        protected virtual int GetRandomNumber(int min, int max)
         {
             return m_Random.Next(min, max);
         }

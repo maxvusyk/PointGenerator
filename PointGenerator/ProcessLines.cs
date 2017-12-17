@@ -96,14 +96,14 @@ namespace PointGenerator
         private SortedDictionary<double, List<Point3D>> GetPointsWithDistance(Point3DCollection points)
         {
             var sortedPoints = new SortedDictionary<double, List<Point3D>>();
-            var centrePoint = new Point3D();
+            var centralPoint = new Point3D();
 
             foreach (var point in points)
             {
-                if (point.Equals(centrePoint))
+                if (point.Equals(centralPoint))
                     continue;
 
-                double distance = centrePoint.DistanceTo(point);
+                double distance = centralPoint.DistanceTo(point);
 
                 if (!sortedPoints.ContainsKey(distance))
                     sortedPoints.Add(distance, new List<Point3D> { point });

@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media.Media3D;
-using HelixToolkit.Wpf;
 
 namespace PointGenerator
 {
@@ -16,7 +11,7 @@ namespace PointGenerator
             GeneratePoints();
         }
 
-        public Point3DCollection Points { get => m_Points; private set => m_Points = value; }
+        public Point3DCollection Points { get => m_Points; }
 
         public void GeneratePoints()
         {

@@ -13,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace PointGenerator
 {
@@ -30,8 +29,8 @@ namespace PointGenerator
         private void buttonGenerate_Click(object sender, RoutedEventArgs e)
         {
             var coordBorder = getBorder();
-            var lines = new SortedLines(coordBorder, ViewPort1);
-            lines.RenderLines();
+            m_SortedLines = new SortedLines(coordBorder, ViewPort1);
+            m_SortedLines.RenderLines();
         }
 
         private CoordinateBorder getBorder()
@@ -54,6 +53,12 @@ namespace PointGenerator
             setDefaultValues();
         }
 
+        private void buttonGeneratePolygon_Click(object sender, RoutedEventArgs e)
+        {
+            clearScene();
+            m_SortedLines.createPolygon(Int32.Parse(textBoxCount.Text));
+        }
+
         private void setDefaultValues()
         {
             textBoxMinX.Text = "-20";
@@ -64,5 +69,13 @@ namespace PointGenerator
             textBoxMaxZ.Text = "10";
             textBoxCountPoint.Text = "50";
         }
+
+        private void clearScene()
+        {
+            if (ViewPort1.Children.Any())
+                ViewPort1.Children.Clear();
+        }
+
+        private SortedLines m_SortedLines;
     }
 }

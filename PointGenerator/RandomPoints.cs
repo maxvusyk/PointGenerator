@@ -24,7 +24,6 @@ namespace PointGenerator
             {
                 m_Points.Add(new Point3D(0, 0, 0));
                 m_Points.Add(getRandomPoint());
-
             }
         }
 

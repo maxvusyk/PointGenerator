@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
 
@@ -50,6 +51,37 @@ namespace PointGenerator
             m_Viewport.Children.Add(lines1);
             m_Viewport.Children.Add(lines2);
             m_Viewport.Children.Add(lines3);
+        }
+
+        public void createPolygon(int pointCount)
+        {
+            LinesVisual3D polygon = new LinesVisual3D();
+            Point3D prev = new Point3D();
+            Random rand = new Random();
+            Point3D nullablePoint = new Point3D();
+
+            int randNumber = rand.Next(0, m_Points.Points.Count());
+            while (m_Points.Points[randNumber].Equals(nullablePoint))
+                randNumber = rand.Next(0, m_Points.Points.Count());
+
+            polygon.Points.Add(m_Points.Points[randNumber]);
+
+            for (int i = 1; i < pointCount; i++)
+            {
+                randNumber = rand.Next(0, m_Points.Points.Count());
+                while (m_Points.Points[randNumber].Equals(nullablePoint))
+                    randNumber = rand.Next(0, m_Points.Points.Count());
+
+                if (!prev.Equals(nullablePoint))
+                    polygon.Points.Add(prev);
+
+                prev = m_Points.Points[rand.Next(0, m_Points.Points.Count())];
+                polygon.Points.Add(prev);
+            }
+
+            polygon.Points.Add(polygon.Points.First());
+            //Visual3DCollection col = new Visual3DCollection();
+            //col.Add();
         }
 
         private void processLinesIntoGroups()

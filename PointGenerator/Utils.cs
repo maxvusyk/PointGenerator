@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media.Media3D;
+﻿using System.Windows.Media.Media3D;
 
 namespace PointGenerator
 {
@@ -11,43 +6,70 @@ namespace PointGenerator
     {
         public static class Math
         {
-            public static bool IsPointInTriangle(Point3D destinationPoint, Point3D a, Point3D b, Point3D c)
+            public static bool IsPointInPolygon(Point3D destinationPoint, Point3DCollection points)
             {
-                return ((Classify(destinationPoint, a, b) != Location_e.LEFT) &&
-                        (Classify(destinationPoint, b, c) != Location_e.LEFT) &&
-                        (Classify(destinationPoint, c, a) != Location_e.LEFT));
+                bool parity = true;
+
+                for (int i = 0; i < points.Count; i++)
+                {
+                    Point3D startEdge = points[i];
+                    Point3D endEdge = points[(++i)];
+
+                    switch (EdgeType(destinationPoint, startEdge, endEdge))
+                    {
+                        case EdgeType_e.TOUCHING:
+                            return true;
+                        case EdgeType_e.CROSSING:
+                            parity = !parity;
+                            break;
+                    }
+                }
+
+                return parity ? false : true;
             }
 
-            private static Location_e Classify(Point3D destinationPoint, Point3D trianglePoint0, Point3D trianglePoint1)
+            private static EdgeType_e EdgeType(Point3D destinationPoint, Point3D startEdge, Point3D endEdge)
             {
-                Point3D a = (Point3D)(trianglePoint1 - trianglePoint0);
-                Point3D b = (Point3D)(destinationPoint - trianglePoint0);
-
-                double sa = (a.X * b.Y) - (b.X * a.Y);
-                if (sa > 0.0)
-                    return Location_e.LEFT;
-                //if (sa < 0.0)
-                //    return Location_e.RIGHT;
-                if ((a.X * b.X < 0.0) || (a.Y * b.Y < 0.0))
-                    return Location_e.BEHIND;
-                if (VectorLength(a) < VectorLength(b))
-                    return Location_e.BEYOND;
-                if (trianglePoint0.Equals(destinationPoint))
-                    return Location_e.ORIGIN;
-                if (trianglePoint1.Equals(destinationPoint))
-                    return Location_e.DESTINATION;
-                return Location_e.BETWEEN;
+                switch (Classify(destinationPoint, startEdge, endEdge))
+                {
+                    case PointOverEdge_e.LEFT:
+                        return ((startEdge.Y < destinationPoint.Y) && (destinationPoint.Y <= endEdge.Y)) ? EdgeType_e.CROSSING : EdgeType_e.INESSENTIAL;
+                    case PointOverEdge_e.RIGHT:
+                        return ((endEdge.Y < destinationPoint.Y) && (destinationPoint.Y <= startEdge.Y)) ? EdgeType_e.CROSSING : EdgeType_e.INESSENTIAL;
+                    case PointOverEdge_e.BETWEEN:
+                        return EdgeType_e.TOUCHING;
+                    default:
+                        return EdgeType_e.INESSENTIAL;
+                }
             }
 
-            private static double VectorLength(Point3D point)
+            private static PointOverEdge_e Classify(Point3D destinationPoint, Point3D startEdge, Point3D endEdge)
             {
-                return System.Math.Sqrt((point.X * point.X) + (point.Y * point.Y));
+                double a = startEdge.Y - endEdge.Y;
+                double b = endEdge.X - startEdge.X;
+                double c = startEdge.X * endEdge.Y - endEdge.X * startEdge.Y;
+
+                double f = a * destinationPoint.X + b * destinationPoint.Y + c;
+
+                if (f > 0)
+                    return PointOverEdge_e.RIGHT;
+                if (f < 0)
+                    return PointOverEdge_e.LEFT;
+
+                double minX = System.Math.Min(startEdge.X, endEdge.X);
+                double maxX = System.Math.Max(startEdge.X, endEdge.X);
+                double minY = System.Math.Min(startEdge.Y, endEdge.Y);
+                double maxY = System.Math.Max(startEdge.Y, endEdge.Y);
+
+                if (minX <= destinationPoint.X && destinationPoint.X <= maxX && minY <= destinationPoint.Y && destinationPoint.Y <= maxY)
+                    return PointOverEdge_e.BETWEEN;
+
+                return PointOverEdge_e.OUTSIDE;
             }
 
-            private enum Location_e
-            {
-                LEFT, RIGHT, BEYOND, BEHIND, BETWEEN, ORIGIN, DESTINATION
-            }
+            private enum PointInPolygon_e { INSIDE, OUTSIDE, BOUNDARY }
+            private enum EdgeType_e { TOUCHING, CROSSING, INESSENTIAL }
+            private enum PointOverEdge_e { LEFT, RIGHT, BETWEEN, OUTSIDE }
         }
     }
 }

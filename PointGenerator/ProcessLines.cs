@@ -1,9 +1,5 @@
 ﻿using HelixToolkit.Wpf;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
 
@@ -36,6 +32,8 @@ namespace PointGenerator
         public Dictionary<LineGroup_e, LinesVisual3D> Lines { get => m_Lines; }
 
         #endregion
+
+        public enum LineGroup_e { LOW, MIDDLE, HIGHT }
 
         #region Public logic
 

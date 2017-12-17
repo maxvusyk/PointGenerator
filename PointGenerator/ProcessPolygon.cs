@@ -1,10 +1,5 @@
 ﻿using HelixToolkit.Wpf;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media.Media3D;
 
 namespace PointGenerator
 {
@@ -17,29 +12,31 @@ namespace PointGenerator
         }
 
         public RandomPoints2D Points { get => m_Points; }
+        public LinesVisual3D Polygon { get => m_Polygon;}
 
         public void createPolygon()
         {
-            LinesVisual3D polygon = new LinesVisual3D();
-            
-            polygon.Points.Add(m_Points.Points.First());
+            m_Polygon = new LinesVisual3D();
+
+            m_Polygon.Points.Add(m_Points.Points.First());
 
             for(int i = 1; i < m_Points.Points.Count(); i++)
             {
-                polygon.Points.Add(m_Points.Points[i]);
-                polygon.Points.Add(m_Points.Points[i]);
+                m_Polygon.Points.Add(m_Points.Points[i]);
+                m_Polygon.Points.Add(m_Points.Points[i]);
 
                 if(m_Points.Points[i].Equals(m_Points.Points.Last()))
-                    polygon.Points.Add(m_Points.Points.First());
+                    m_Polygon.Points.Add(m_Points.Points.First());
 
             }
 
-            m_Viewport.Children.Add(polygon);
+            m_Viewport.Children.Add(m_Polygon);
         }
 
         #region Private fields
 
         private RandomPoints2D m_Points;
+        private LinesVisual3D m_Polygon;
         private HelixViewport3D m_Viewport;
 
         #endregion

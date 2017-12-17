@@ -2,17 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
-using System.Windows.Navigation;
 
 namespace PointGenerator
 {
@@ -103,8 +96,8 @@ namespace PointGenerator
             SphereVisual3D sphere = new SphereVisual3D();
             sphere.Center = new Point3D(destinationPoint.Value.X, destinationPoint.Value.Y, destinationPoint.Value.Z);
             sphere.Radius = 0.25;
-            bool isPointInTriangle = Utils.Math.IsPointInTriangle(destinationPoint.Value, m_ProcessPolygon.Points.Points[0], m_ProcessPolygon.Points.Points[1], m_ProcessPolygon.Points.Points[2]);
-            if (isPointInTriangle)
+            bool isPointInPolygon = Utils.Math.IsPointInPolygon(destinationPoint.Value, m_ProcessPolygon.Polygon.Points);
+            if (isPointInPolygon)
                 sphere.Material = new EmissiveMaterial(new SolidColorBrush(Colors.Yellow));
             else
                 sphere.Material = new EmissiveMaterial(new SolidColorBrush(Colors.Red));

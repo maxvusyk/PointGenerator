@@ -37,7 +37,7 @@
         </GroupBox>
         <GroupBox x:Name="groupBoxPolygon" Header="Generate polygon" HorizontalAlignment="Left" Height="116" Margin="-286,188,0,0" VerticalAlignment="Top" Width="212">
             <Grid HorizontalAlignment="Left" Height="125" Margin="0,0,-2,-12" VerticalAlignment="Top" Width="202">
-                <TextBox x:Name="textBoxCountPolygonPoints" HorizontalAlignment="Left" Height="23" Margin="87,38,0,0" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Width="34" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="textBoxCountPolygonPoints" HorizontalAlignment="Left" Height="23" Margin="87,38,0,0" TextWrapping="Wrap" Text="4" VerticalAlignment="Top" Width="34" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                 <Button x:Name="buttonGeneratePolygon" Content="Generate" HorizontalAlignment="Left" Margin="53,66,0,0" VerticalAlignment="Top" Width="101" Height="25" Click="buttonGeneratePolygon_Click"/>
                 <Label x:Name="labelCountPolygon" Content="Count of vertex" HorizontalAlignment="Left" Margin="53,7,0,0" VerticalAlignment="Top"/>
             </Grid>

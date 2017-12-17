@@ -29,8 +29,9 @@ namespace PointGenerator
         private void buttonGenerate_Click(object sender, RoutedEventArgs e)
         {
             var coordBorder = getBorder();
-            var lines = new SortedLines(coordBorder, ViewPort1);
-            lines.RenderLines();
+            m_ProcessLines = new ProcessLines(coordBorder, ViewPort1);
+            m_ProcessLines.RenderLines();
+
         }
 
         private CoordinateBorder getBorder()
@@ -56,7 +57,7 @@ namespace PointGenerator
         private void buttonGeneratePolygon_Click(object sender, RoutedEventArgs e)
         {
             clearScene();
-            m_SortedLines.createPolygon(Int32.Parse(textBoxCount.Text));
+            m_ProcessLines.createPolygon(Int32.Parse(textBoxCount.Text));
         }
 
         private void setDefaultValues()
@@ -69,5 +70,15 @@ namespace PointGenerator
             textBoxMaxZ.Text = "10";
             textBoxCountPoint.Text = "50";
         }
+
+        private void clearScene()
+        {
+            if (ViewPort1.Children.Any())
+                ViewPort1.Children.Clear();
+        }
+
+        private ProcessLines m_ProcessLines;
+
+
     }
 }
